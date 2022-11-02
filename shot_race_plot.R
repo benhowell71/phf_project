@@ -78,7 +78,7 @@ create_shot_race_plot <- function(game_df) {
         dplyr::filter(! is.na(player_name_1)) %>%
         dplyr::mutate(lab = paste0(player_name_1, ' (', situation, ')')),
       aes(x = minute_of_game - 5, y = shots_to_point + 3, label = lab),
-      fill = NA, label.color = NA, size = 4
+      fill = NA, label.color = NA, size = 3
     ) +
     labs(title = title,
          x = 'Minute of Game',
@@ -93,8 +93,8 @@ create_shot_race_plot <- function(game_df) {
           axis.line = element_line(size = 1),
           axis.text = element_text(size = 12),
           aspect.ratio = 1 /asp_ratio,
-          plot.title = element_text(hjust = 0.5, face = "bold", size = 16))
+          plot.title = element_text(hjust = 0.5, face = "bold", size = 12))
   
-  
+  ggsave(plt, file = paste0('plot_outputs/', unique(game_df$away_abbreviation), '_', unique(game_df$home_abbreviation), '_shot_race_plot.png'))
 
 }
